@@ -112,9 +112,3 @@ npm run build
 | Admin Dashboard | [`src/pages/platform/AdminDashboard.jsx`](src/pages/platform/AdminDashboard.jsx) | Omer Haydar |
 | Admin Moderation Queue | [`src/pages/platform/AdminModerationQueue.jsx`](src/pages/platform/AdminModerationQueue.jsx) | Omer Haydar |
 | Admin Club Verification / Moderation | [`src/pages/platform/AdminClubModeration.jsx`](src/pages/platform/AdminClubModeration.jsx) | Omer Haydar |
-
-## Modules Pending (Not Yet Implemented)
-
-| Module | Owner | Notes |
-| --- | --- | --- |
-| Module 5: Follower Management (View Follower List + Demographics) | Hosam Sayed | SRS Section 4.5 — needs a dedicated page, e.g. `src/pages/organizer/FollowerManagement.jsx` |
