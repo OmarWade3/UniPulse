@@ -92,8 +92,6 @@ npm run build
 | Module 3: Student Event Registration Form (Student-Facing) | [`src/pages/organizer/EventRegistrationForm.jsx`](src/pages/organizer/EventRegistrationForm.jsx) | Hosam Sayed |
 | Module 4: Announcement Broadcast | [`src/pages/organizer/BroadcastComposer.jsx`](src/pages/organizer/BroadcastComposer.jsx) | Hosam Sayed |
 
-> Note: Module 5 (Follower Management) is not yet present as a standalone script and should be added before the High Fidelity Prototype demo — see *Modules Pending* below.
-
 ### Subsystem 3: Platform Intelligence & Analytics System — Omer Haydar
 
 | Module | Frontend Script | PIC |
