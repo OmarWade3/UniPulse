@@ -1,9 +1,18 @@
 import { Calendar, ChevronUp, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
+import campusMap from "../../../map.png";
 import { eventViewModel } from "../../components/shared/dataHelpers";
 import { events, venues } from "../../data/mockEvents";
 
+const venueHitAreas = [
+  { id: "n24", left: 14, top: 16, width: 25, height: 28 },
+  { id: "p19", left: 43, top: 13, width: 29, height: 23 },
+  { id: "main-hall", left: 33, top: 40, width: 27, height: 24 },
+  { id: "sports", left: 62, top: 50, width: 27, height: 24 },
+  { id: "stadium", left: 71, top: 64, width: 22, height: 22 },
+  { id: "lake", left: 8, top: 50, width: 28, height: 29 },
+];
 export default function CampusMap() {
   const [selectedVenue, setSelectedVenue] = useState(null);
   const venueEvents = events.filter((event) => event.venueId === selectedVenue).map(eventViewModel);
@@ -16,15 +25,19 @@ export default function CampusMap() {
       </div>
       <div className="p-4">
         <div className="bg-card rounded-xl overflow-hidden border border-border">
-          <div className="relative w-full aspect-[4/3] bg-gradient-to-br from-green-50 to-blue-50">
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-              <path d="M 10 20 Q 30 15 50 20 T 90 25" stroke="#9CA3AF" strokeWidth="0.5" fill="none" strokeDasharray="2,2" />
-              <path d="M 15 80 L 85 80" stroke="#9CA3AF" strokeWidth="0.8" fill="none" />
-              <rect x="20" y="25" width="25" height="20" fill="#E5E7EB" stroke="#9CA3AF" strokeWidth="0.5" rx="1" />
-              <rect x="55" y="20" width="25" height="15" fill="#E5E7EB" stroke="#9CA3AF" strokeWidth="0.5" rx="1" />
-              <rect x="35" y="50" width="30" height="25" fill="#E5E7EB" stroke="#9CA3AF" strokeWidth="0.5" rx="1" />
-              <rect x="70" y="60" width="20" height="18" fill="#E5E7EB" stroke="#9CA3AF" strokeWidth="0.5" rx="1" />
-            </svg>
+          <div className="relative w-full aspect-[4/3] bg-muted overflow-hidden">
+            <img src={campusMap} alt="UTM campus map" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-background/5" />
+            {venueHitAreas.map((area) => (
+              <button
+                key={area.id}
+                type="button"
+                aria-label={`Show events at ${venues.find((item) => item.id === area.id)?.name}`}
+                onClick={() => setSelectedVenue(area.id)}
+                className={`absolute rounded-xl transition-colors ${selectedVenue === area.id ? "bg-primary/15 ring-2 ring-primary/60" : "hover:bg-primary/10"}`}
+                style={{ left: `${area.left}%`, top: `${area.top}%`, width: `${area.width}%`, height: `${area.height}%` }}
+              />
+            ))}
             {venues.map((item) => (
               <button key={item.id} onClick={() => setSelectedVenue(item.id)} className="absolute -translate-x-1/2 -translate-y-1/2" style={{ left: `${item.x}%`, top: `${item.y}%` }}>
                 <MapPin className={`w-8 h-8 drop-shadow-lg ${selectedVenue === item.id ? "text-primary scale-110" : "text-destructive"}`} fill="currentColor" />
@@ -51,3 +64,5 @@ export default function CampusMap() {
     </div>
   );
 }
+
+
