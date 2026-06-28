@@ -1,4 +1,4 @@
-import { ArrowLeft, Bookmark, Calendar, CheckCircle, MapPin, Share2, Star, Users, X } from "lucide-react";
+import { ArrowLeft, Bookmark, Calendar, CheckCircle, Flag, MapPin, Share2, Star, Users, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { eventViewModel, getEvent } from "../../components/shared/dataHelpers";
@@ -61,9 +61,14 @@ export default function EventDetail() {
           <p className="flex gap-3"><MapPin className="w-5 h-5 text-primary" /><span>{event.venue.name}<br /><Link to="/student/map" className="text-sm text-primary">View on map</Link></span></p>
           <p className="flex gap-3"><Users className="w-5 h-5 text-primary" /><span>{rsvpCount} people going<br /><span className="text-sm text-muted-foreground">See who's attending</span></span></p>
         </div>
+        <div className="mb-6 space-y-3">
+          <Link to={`/student/events/${event.id}/report`} className="w-full flex items-center justify-center gap-2 py-3 border border-destructive/30 text-destructive rounded-lg hover:bg-destructive/5">
+            <Flag className="w-4 h-4" /> Report this event to admin
+          </Link>
+          {isRSVPed && <Link to={`/student/feedback/${event.id}`} className="w-full flex items-center justify-center gap-2 py-3 border border-primary/40 text-primary rounded-lg"><Star className="w-4 h-4" /> Leave Feedback for this Event</Link>}
+        </div>
         <h2 className="font-semibold mb-2">About this event</h2>
         <p className="text-muted-foreground leading-relaxed mb-6">{event.description}</p>
-        {isRSVPed && <Link to={`/student/feedback/${event.id}`} className="w-full flex items-center justify-center gap-2 py-3 border border-primary/40 text-primary rounded-lg"><Star className="w-4 h-4" /> Leave Feedback for this Event</Link>}
       </div>
       <div className="fixed bottom-16 md:bottom-0 left-0 right-0 bg-card border-t border-border p-4 z-40">
         <div className="max-w-screen-sm mx-auto"><button onClick={rsvp} className={`w-full py-3 rounded-lg font-medium flex justify-center gap-2 ${isRSVPed ? "bg-green-600 text-white" : "bg-primary text-primary-foreground"}`}>{isRSVPed ? <><CheckCircle className="w-5 h-5" /> Going</> : "RSVP"}</button></div>

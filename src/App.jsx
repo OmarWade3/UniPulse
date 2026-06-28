@@ -12,6 +12,7 @@ import SearchEvents from "./pages/student/SearchEvents";
 import CampusMap from "./pages/student/CampusMap";
 import MyEvents from "./pages/student/MyEvents";
 import Feedback from "./pages/student/Feedback";
+import ReportEvent from "./pages/student/ReportEvent";
 import OrganizerDashboard from "./pages/organizer/OrganizerDashboard";
 import CreateEvent from "./pages/organizer/CreateEvent";
 import ClubProfile, { CreateClubProfile } from "./pages/organizer/ClubProfile";
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/student/clubs/:clubId" element={<RoleGate allowed={["student"]}><ClubProfile /></RoleGate>} />
         <Route path="/student/events/:eventId" element={<RoleGate allowed={["student"]}><EventDetail /></RoleGate>} />
         <Route path="/student/events/:eventId/register" element={<RoleGate allowed={["student"]}><EventRegistrationForm /></RoleGate>} />
+        <Route path="/student/events/:eventId/report" element={<RoleGate allowed={["student"]}><ReportEvent /></RoleGate>} />
         <Route path="/student/feedback/:eventId" element={<RoleGate allowed={["student"]}><Feedback /></RoleGate>} />
 
         <Route path="/organizer/dashboard" element={<RoleGate allowed={["organizer"]}><OrganizerDashboard /></RoleGate>} />
